@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Post } from './post';
-
+import * as firebase from 'firebase';
 
 @Component({
     selector: 'app-root',
@@ -8,12 +7,19 @@ import { Post } from './post';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    posts: Post[] = [];
-
     constructor() {
-        this.posts.push(new Post('Mon premier post', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', 1));
-        this.posts.push(new Post('Mon deuxième post', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis', -1));
-        this.posts.push(new Post('Encore un post', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo', 0));
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: 'AIzaSyDvC9i2CPlJ0-RvaZceSOsFTEFoamZVs-s',
+            authDomain: 'openclassrooms-blog.firebaseapp.com',
+            databaseURL: 'https://openclassrooms-blog.firebaseio.com',
+            projectId: 'openclassrooms-blog',
+            storageBucket: 'openclassrooms-blog.appspot.com',
+            messagingSenderId: '525107929057',
+            appId: '1:525107929057:web:56bbc9f76fe11865'
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
     }
 
 }

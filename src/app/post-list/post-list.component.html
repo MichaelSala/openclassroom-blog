@@ -1,0 +1,16 @@
+<div class="container">
+    <h2>Posts</h2>
+    <div class="list-group">
+        <div class="alert alert-info text-center" *ngIf="this.postsService.init">
+            Chargement en cours ...
+        </div>
+        <div *ngFor="let post of this.posts, let i = index">
+            <app-post-list-item [postIndex]="i"></app-post-list-item>
+        </div>
+    </div>
+    <a [routerLink]="['/posts', 'new']" *ngIf="this.posts.length === 0 && !this.postsService.init">
+        <div class="alert alert-info text-center">
+            Commencez par créer un nouveau post.
+        </div>
+    </a>
+</div>

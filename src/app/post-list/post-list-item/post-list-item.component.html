@@ -1,0 +1,30 @@
+<div [ngClass]="{
+    'list-group-item': true,
+    'list-group-item-success': this.postsService.getLoveIts(this.postIndex) > 0,
+    'list-group-item-danger': this.postsService.getLoveIts(this.postIndex) < 0
+  }">
+  <div class="d-flex justify-content-between">
+    <span class="font-italic text-secondary pull-right" style="color:grey">
+      {{ this.postsService.getCreatedAt(this.postIndex) | date: 'MM/dd/yyyy, hh:mm a' }}
+    </span>
+    <h2>
+      {{ this.postsService.getTitle(this.postIndex) }}
+    </h2>
+  </div>
+  <p [innerHTML]="this.postsService.getContent(this.postIndex)"></p>
+  <div>
+    <button class="btn btn-success" (click)="onLoveClick()">
+      Love !!!
+      <span *ngIf="this.postsService.getLoveIts(this.postIndex) > 0"
+        class="badge">{{ this.postsService.getLoveIts(this.postIndex) }}</span>
+    </button>
+    <button class="btn btn-danger" (click)="onDislikeClick()">
+      Don't love !!!
+      <span *ngIf="this.postsService.getLoveIts(this.postIndex) < 0"
+        class="badge">{{ this.postsService.getLoveIts(this.postIndex) * -1 }}</span>
+    </button>
+    <button class="btn btn-danger pull-right" (click)="onDeleteClick()">
+      Supprimer le post
+    </button>
+  </div>
+</div>
